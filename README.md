@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* This is the repo of the BDD course with Rails 5 - Alpha blog
