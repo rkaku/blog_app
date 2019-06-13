@@ -7,7 +7,9 @@ class ArticlesController < ApplicationController
   end
   
   def show
-    # @article = Article.find(params[:id])
+    # @article = Article.find
+    @comment = @article.comments.build
+    @comments = @article.comments
   end
   
   def new
@@ -18,10 +20,10 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user = current_user
     if @article.save
-      flash[:success] = 'Article has been created'
+      flash[:success] = 'Article has been created.'
       redirect_to articles_path
     else
-      flash.now[:danger] = "Article has not been created"
+      flash.now[:danger] = "Article has not been created."
       render :new
     end
   end
@@ -41,10 +43,10 @@ class ArticlesController < ApplicationController
       redirect_to root_path
     else
       if @article.update(article_params)
-        flash[:success] = "Article has been updated"
+        flash[:success] = "Article has been updated."
         redirect_to @article
       else
-        flash.now[:danger] = "Article has not been updated"
+        flash.now[:danger] = "Article has not been updated."
         render :edit
       end
     end
@@ -53,14 +55,14 @@ class ArticlesController < ApplicationController
   def destroy
     # @article = Article.find(params[:id])
     if @article.destroy
-      flash[:success] = "Article has been deleted"
+      flash[:success] = "Article has been deleted."
       redirect_to articles_path
     end
   end
   
   protected
     def resource_not_found
-      message = "The article you are looking for could not be found"
+      message = "The article you are looking for could not be found."
       flash[:alert] = message
       redirect_to root_path
     end
